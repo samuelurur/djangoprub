@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block title %}Acceso Staff y Nómina{% endblock %}
+
+{% block content %}
+<section class="section admin-login-section">
+    <h1 class="section-title">Acceso de Personal</h1>
+    <p class="section-subtitle">Esta área es solo para empleados autorizados.</p>
+
+    <form method="post" class="login-form">
+        {% csrf_token %}
+        
+        <div class="form-group">
+            <label for="id_username">Usuario</label>
+            <input type="text" id="id_username" name="username" required>
+        </div>
+        
+        <div class="form-group">
+            <label for="id_password">Contraseña</label>
+            <input type="password" id="id_password" name="password" required>
+        </div>
+
+        {% if form.errors %}
+            <p class="error-message">Usuario o contraseña incorrectos. Por favor, inténtalo de nuevo.</p>
+        {% endif %}
+
+        <button type="submit" class="btn btn-primary form-submit-btn">Ingresar</button>
+    </form>
+</section>
+{% endblock %}

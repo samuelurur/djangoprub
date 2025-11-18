@@ -1,0 +1,707 @@
+/* ======================================================== */
+/* ------------------------ VARIABLES --------------------- */
+/* ======================================================== */
+:root {
+    --bg-color: #0b0b0b;
+    --color-negro: #111111;
+    --color-blanco: #fafafa;
+    --color-fondo: #111111;
+    --color-acento: #00A859; /* Tu verde esmeralda */
+    --color-gris-texto: #bbb;
+    
+    --font-serif: "Cormorant Garamond", serif;
+    --font-sans: "Inter", sans-serif;
+    
+    font-family: var(--font-sans);
+}
+
+/* ======================================================== */
+/* ------------------------ RESET Y BASE ------------------ */
+/* ======================================================== */
+
+/* Un reset simple para consistencia */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--color-blanco);
+    font-family: var(--font-sans);
+    line-height: 1.7; /* Más espacio entre líneas para leer */
+    font-size: 16px;
+}
+
+/* ======================================================== */
+/* ------------------------ TIPOGRAFÍA GLOBAL -------------- */
+/* ======================================================== */
+
+/* Títulos principales con tu fuente serif y color acento */
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-serif);
+    color: var(--color-acento);
+    letter-spacing: 1px;
+    margin-bottom: 1rem;
+    line-height: 1.3;
+}
+
+h1 { font-size: 3.5rem; text-align: center; margin-bottom: 2rem; }
+h2 { font-size: 2.8rem; margin-top: 3rem; }
+h3 { font-size: 2.2rem; }
+
+/* Párrafos con un color más suave para no cansar la vista */
+p {
+    color: var(--color-gris-texto);
+    font-size: 1.1rem;
+    margin-bottom: 1.5rem;
+}
+
+/* Enlaces globales */
+a {
+    color: var(--color-acento);
+    text-decoration: none;
+    transition: all 0.3s ease;
+    font-weight: 600;
+}
+
+a:hover {
+    color: var(--color-blanco);
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 4px;
+}
+
+/* ======================================================== */
+/* ------------------- BOTONES GLOBALES ------------------ */
+/* ======================================================== */
+
+.btn-acento, 
+button[type="submit"], 
+input[type="submit"] {
+    background-color: var(--color-acento);
+    color: var(--color-negro); /* Texto oscuro para alto contraste */
+    padding: 12px 28px;
+    border-radius: 30px; /* Estilo "píldora" */
+    font-weight: 800;
+    letter-spacing: 0.5px;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0,168,89,0.4);
+    display: inline-block;
+    text-decoration: none;
+    text-align: center;
+}
+
+.btn-acento:hover, 
+button[type="submit"]:hover, 
+input[type="submit"]:hover {
+    transform: translateY(-3px) scale(1.03);
+    box-shadow: 0 6px 20px rgba(0,168,89,0.6);
+    background-color: #00BF69; /* Verde más claro */
+    color: var(--color-blanco); /* Texto blanco en hover */
+    text-decoration: none;
+}
+
+/* ======================================================== */
+/* ------------------- LAYOUT / CONTENEDOR ---------------- */
+/* ======================================================== */
+
+/* Una clase útil para centrar tu contenido */
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 4rem auto; /* Centra y da espacio vertical */
+}
+
+/* ======================================================== */
+/* -------------- HEADER / BARRA DE NAVEGACIÓN ------------ */
+/* ======================================================== */
+
+.main-header {
+    background-color: var(--color-negro);
+    padding: 1rem 2rem;
+    position: sticky; /* ¡Se queda fijo al hacer scroll! */
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    
+    /* Borde inferior sutil con tu color acento */
+    border-bottom: 2px solid rgba(0, 168, 89, 0.2); 
+    
+    /* Sombra para darle profundidad y separarlo del contenido */
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
+}
+
+.navbar-container {
+    display: flex;
+    justify-content: space-between; /* Espacia los elementos */
+    align-items: center; /* Centra verticalmente */
+    max-width: 1400px; /* Ancho máximo */
+    margin: 0 auto;
+}
+
+/* --- Logo --- */
+.nav-logo {
+    font-family: var(--font-serif);
+    font-size: 1.8rem;
+    color: var(--color-acento); /* Logo con color acento */
+    font-weight: 700;
+    text-decoration: none;
+}
+.nav-logo:hover {
+    text-decoration: none;
+    color: var(--color-blanco);
+}
+
+/* --- Enlaces de Navegación --- */
+.nav-links {
+    display: flex;
+    list-style: none;
+    gap: 2.5rem; /* Espacio entre enlaces */
+}
+
+.nav-links li {
+    padding: 0;
+    margin: 0;
+}
+
+.nav-links a {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--color-blanco);
+    text-decoration: none;
+    position: relative; /* Necesario para el efecto hover */
+    padding-bottom: 8px; /* Espacio para la línea inferior */
+}
+
+/* Efecto "vistoso" en hover para los enlaces */
+.nav-links a::after {
+    content: '';
+    position: absolute;
+    width: 0; /* Inicia sin ancho */
+    height: 3px; /* Grosor de la línea */
+    bottom: 0;
+    left: 0;
+    background-color: var(--color-acento);
+    transition: width 0.4s ease; /* Animación suave */
+}
+
+.nav-links a:hover {
+    color: var(--color-acento); /* Texto cambia a verde */
+    text-decoration: none; /* Quitamos el subrayado global */
+}
+
+.nav-links a:hover::after {
+    width: 100%; /* La línea crece al 100% en hover */
+}
+
+/* --- Botón CTA (Reservar) --- */
+.nav-cta {
+    background-color: var(--color-acento);
+    color: var(--color-negro);
+    padding: 10px 24px;
+    border-radius: 30px;
+    font-weight: 800;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0,168,89,0.3);
+}
+
+.nav-cta:hover {
+    transform: scale(1.05) translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0,168,89,0.5);
+    background-color: #00BF69;
+    color: var(--color-blanco);
+    text-decoration: none;
+}
+
+/* --- Icono de Menú Móvil (Hamburguesa) --- */
+.nav-toggle {
+    display: none; /* Oculto en escritorio */
+    cursor: pointer;
+}
+
+.nav-toggle .bar {
+    display: block;
+    width: 25px;
+    height: 3px;
+    margin: 5px auto;
+    background-color: var(--color-blanco);
+    transition: all 0.3s ease-in-out;
+}
+
+/* ======================================================== */
+/* ------------------ FOOTER (REDiseñado) ----------------- */
+/* ======================================================== */
+
+footer {
+    background: var(--color-negro);
+    padding: 50px 0;
+    margin-top: 5rem; /* Espacio antes del footer */
+    
+    /* Borde superior llamativo con tu color acento */
+    border-top: 4px solid var(--color-acento);
+    
+    /* Efecto de "brillo" sutil hacia arriba */
+    box-shadow: 0 -10px 30px rgba(0,168,89,0.25);
+}
+
+.footer-columns {
+    max-width: 1200px;
+    display: flex;
+    justify-content: space-between;
+    margin: 0 auto;
+    flex-wrap: wrap;
+    padding: 0 2rem; /* Espacio en móviles */
+}
+
+.footer-column {
+    width: 25%;
+    padding: 20px;
+    box-sizing: border-box;
+    min-width: 250px; /* Para que se vea bien al ajustarse */
+}
+
+.footer-column h3 {
+    color: var(--color-acento);
+    font-size: 1.8em;
+    margin-bottom: 25px;
+    font-family: var(--font-serif);
+}
+
+.footer-column ul {
+    list-style: none;
+}
+
+.footer-column ul li {
+    margin-bottom: 15px;
+}
+
+.footer-column ul li a {
+    color: var(--color-gris-texto);
+    text-decoration: none;
+    font-size: 1.1em;
+    font-weight: 400;
+    transition: all 0.3s ease;
+}
+
+.footer-column ul li a:hover {
+    color: var(--color-acento);
+    text-decoration: none;
+    padding-left: 8px; /* Se desplaza a la derecha */
+}
+
+.social-icons {
+    margin-top: 20px;
+}
+
+.social-icons a {
+    margin-right: 20px;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+    display: inline-block; /* Para que el transform funcione */
+}
+
+.social-icons a:hover {
+    opacity: 1;
+    transform: scale(1.2); /* Crece al pasar el mouse */
+}
+
+.footer-credits {
+    margin-top: 40px;
+    text-align: center;
+    font-size: 1em;
+    color: #878787;
+    padding: 0 2rem;
+}
+
+/* ======================================================== */
+/* ---------- SECCIÓN DE SERVICIOS Y TIENDA --------------- */
+/* ======================================================== */
+
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
+    gap: 3.5rem;
+    justify-items: center;
+    margin-top: 60px;
+    padding: 0 2rem;
+    max-width: 1400px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.service-card {
+    background-color: var(--color-negro);
+    color: var(--color-blanco);
+    border: 1px solid rgba(0, 168, 89, 0.2);
+    border-radius: 12px;
+    padding: 0;
+    max-width: 380px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    transition: all 0.4s ease-in-out;
+    overflow: hidden;
+    position: relative;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+}
+
+.service-card:hover {
+    border-color: var(--color-acento);
+    box-shadow: 0 12px 30px rgba(0,168,89,0.5);
+    transform: translateY(-8px) scale(1.02);
+    background-color: #1a1a1a;
+}
+
+.service-card::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle at center, rgba(0,168,89,0.2) 0%, transparent 70%);
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+    z-index: 0;
+}
+
+.service-card:hover::before {
+    opacity: 1;
+}
+
+.card-image-wrapper {
+    width: 100%;
+    height: 250px;
+    overflow: hidden;
+    position: relative;
+    border-radius: 12px 12px 0 0;
+}
+
+.service-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.5s ease;
+}
+
+.service-card:hover .service-image {
+    transform: scale(1.1);
+}
+
+.image-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to top, rgba(0,0,0,0.6) 0%, transparent 60%);
+    transition: background 0.3s ease;
+}
+
+.service-card h3.service-name {
+    font-family: var(--font-serif);
+    font-size: 1.8em;
+    margin: 25px 0 10px;
+    color: var(--color-acento);
+    letter-spacing: 1px;
+}
+
+.service-description {
+    font-size: 1em;
+    color: #a0a0a0;
+    margin: 0 20px 20px;
+    line-height: 1.6;
+}
+
+.service-price {
+    font-family: var(--font-sans);
+    font-size: 1.1em;
+    color: var(--color-blanco);
+    margin-bottom: 15px;
+    font-weight: 600;
+}
+
+.service-price .price-value {
+    font-size: 1.5em;
+    color: var(--color-acento);
+    font-weight: 700;
+}
+
+.service-card .btn-acento {
+    margin-top: auto; /* Empuja el botón al final */
+    margin-bottom: 30px; /* Espacio inferior */
+    margin-left: 20px;
+    margin-right: 20px;
+    width: calc(100% - 40px); /* Ajusta el ancho del botón */
+}
+
+
+/* ======================================================== */
+/* -------------------- FORMULARIO DE CITAS --------------- */
+/* ======================================================== */
+
+.form-container {
+    max-width: 800px;
+    margin: 2rem auto;
+    background-color: var(--color-negro);
+    padding: 3rem;
+    border-radius: 12px;
+    border: 1px solid rgba(0, 168, 89, 0.2);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
+}
+
+.form-grid {
+    display: grid;
+    grid-template-columns: 1fr; /* Una columna por defecto */
+    gap: 1.5rem;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group.full-width {
+    grid-column: 1 / -1; /* Ocupa todo el ancho en la cuadrícula */
+}
+
+.form-group label {
+    font-size: 1.1rem;
+    color: var(--color-acento);
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    font-family: var(--font-sans);
+}
+
+.form-control {
+    width: 100%;
+    padding: 1rem;
+    font-size: 1rem;
+    color: var(--color-blanco);
+    background-color: var(--bg-color);
+    border: 1px solid #444;
+    border-radius: 8px;
+    font-family: var(--font-sans);
+    transition: all 0.3s ease;
+}
+
+.form-control:focus {
+    outline: none;
+    border-color: var(--color-acento);
+    box-shadow: 0 0 10px rgba(0,168,89,0.5);
+}
+
+/* Estilo para los 'date' input */
+.form-control[type="date"]::-webkit-calendar-picker-indicator {
+    filter: invert(1);
+    cursor: pointer;
+}
+
+.form-container .btn-acento {
+    grid-column: 1 / -1; /* Ocupa todo el ancho */
+    margin-top: 1rem;
+}
+
+/* ======================================================== */
+/* ------------------- PERFILES DE EQUIPO ----------------- */
+/* ======================================================== */
+
+.team-grid {
+    display: grid;
+    /* 4 columnas en escritorio, 2 en tablet, 1 en móvil */
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2.5rem;
+}
+
+.team-card {
+    background: var(--color-negro);
+    border-radius: 12px;
+    text-align: center;
+    padding: 2rem 1.5rem;
+    border: 1px solid rgba(0, 168, 89, 0.2);
+    transition: all 0.3s ease;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+}
+
+.team-card:hover {
+    transform: translateY(-8px);
+    border-color: var(--color-acento);
+    box-shadow: 0 12px 30px rgba(0,168,89,0.4);
+}
+
+.team-image-wrapper {
+    width: 160px;
+    height: 160px;
+    border-radius: 50%; /* Imágenes redondas */
+    margin: 0 auto 1.5rem;
+    overflow: hidden;
+    border: 4px solid var(--color-acento);
+    transition: border-color 0.3s ease;
+}
+
+.team-card:hover .team-image-wrapper {
+    border-color: #00BF69; /* Verde más claro en hover */
+}
+
+.team-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s ease;
+}
+
+.team-card:hover .team-image {
+    transform: scale(1.1);
+}
+
+.team-name {
+    font-family: var(--font-serif);
+    font-size: 1.6rem;
+    color: var(--color-acento);
+    margin-bottom: 0.25rem;
+}
+
+.team-title {
+    font-size: 1rem;
+    color: var(--color-blanco);
+    font-weight: 600;
+    margin-bottom: 1rem;
+}
+
+.team-bio {
+    font-size: 0.9rem;
+    color: var(--color-gris-texto);
+}
+
+
+/* ======================================================== */
+/* ------------------------- RESPONSIVE ------------------- */
+/* ======================================================== */
+
+@media (max-width: 992px) {
+    /* --- AJUSTES GLOBALES --- */
+    h1 { font-size: 2.8rem; }
+    h2 { font-size: 2.2rem; }
+    .container { width: 95%; }
+
+    /* --- AJUSTES DE HEADER --- */
+    .nav-links {
+        display: none; /* Ocultar menú en móvil */
+        position: absolute;
+        top: 75px; /* Altura del header */
+        left: 0;
+        background-color: var(--color-negro);
+        width: 100%;
+        flex-direction: column;
+        align-items: center;
+        padding: 1rem 0;
+        box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+    }
+    
+    .nav-links.active {
+        display: flex; /* Mostrar menú al hacer clic */
+    }
+
+    .nav-links li {
+        padding: 1rem 0;
+        width: 100%;
+        text-align: center;
+    }
+
+    .nav-links a {
+        font-size: 1.3rem;
+    }
+    
+    .nav-links a:hover, .nav-links a::after {
+        border: none; /* Quitar efecto de línea en móvil */
+    }
+
+    .nav-cta {
+        display: none; /* Ocultar botón CTA principal en móvil */
+        /* (El botón "Reservar Cita" está en el footer o en el menú) */
+    }
+
+    .nav-toggle {
+        display: block; /* Mostrar icono de hamburguesa */
+    }
+
+    /* Animación de la hamburguesa a "X" */
+    .nav-toggle.is-active .bar:nth-child(2) {
+        opacity: 0;
+    }
+    .nav-toggle.is-active .bar:nth-child(1) {
+        transform: translateY(8px) rotate(45deg);
+    }
+    .nav-toggle.is-active .bar:nth-child(3) {
+        transform: translateY(-8px) rotate(-45deg);
+    }
+
+    /* --- AJUSTES DE FOOTER --- */
+    .footer-columns {
+        justify-content: center;
+    }
+    .footer-column {
+        width: 45%;
+        min-width: 0;
+        text-align: center;
+    }
+    .footer-column ul li a:hover {
+        padding-left: 0; /* Quitar efecto de hover en móvil */
+    }
+
+    /* --- AJUSTES DE FORMULARIO --- */
+    .form-grid {
+        grid-template-columns: 1fr; /* Siempre 1 columna en tabletas y menos */
+    }
+    .form-container {
+        padding: 2rem;
+    }
+}
+
+@media (max-width: 600px) {
+    /* --- AJUSTES GLOBALES --- */
+    body { font-size: 15px; }
+    h1 { font-size: 2.2rem; }
+    h2 { font-size: 1.8rem; }
+    .container { margin: 2rem auto; }
+
+    /* --- AJUSTES DE HEADER --- */
+    .main-header { padding: 1rem; }
+    .nav-links { top: 68px; } /* Ajustar si el padding del header cambia */
+
+    /* --- AJUSTES DE FOOTER --- */
+    .footer-column {
+        width: 100%; /* Una columna en móviles */
+        padding: 10px;
+    }
+    .social-icons {
+        text-align: center;
+    }
+    
+
+    /* --- AJUSTES DE SERVICIOS/TIENDA --- */
+    .services-grid {
+        grid-template-columns: 1fr;
+        padding: 0 1rem;
+        gap: 2rem;
+    }
+    .service-card {
+        max-width: 90%;
+        margin: 0 auto;
+    }
+
+    /* --- AJUSTES DE FORMULARIO --- */
+    .form-container {
+        padding: 1.5rem;
+    }
+}

@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Nuestro Equipo - Digital Barber{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h1>Nuestro Equipo</h1>
+    <p style="text-align: center; max-width: 600px; margin: 0 auto 4rem; color: var(--color-gris-texto);">
+        Conoce a los artistas detrás de la navaja.
+    </p>
+
+    <div class="team-grid">
+
+        {% for empleado in empleados %}
+            <div class="team-card">
+                <div class="team-image-wrapper">
+                    <img src="{{ empleado.imagen.url }}" alt="{{ empleado.nombre }}" class="team-image">
+                </div>
+                <h3 class="team-name">{{ empleado.nombre }} {{ empleado.apellido }}</h3>
+                <p class="team-title">{{ empleado.puesto }}</p>
+                <p class="team-bio">{{ empleado.bio|truncatewords:20 }}</p>
+            </div>
+        {% empty %}
+             <p>No hay información del equipo disponible.</p>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

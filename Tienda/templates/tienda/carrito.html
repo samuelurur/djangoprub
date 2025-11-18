@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+{% load humanize %}
+
+{% block title %}Carrito{% endblock %}
+
+{% block content %}
+<div class="container">
+  <h1>🛒 Tu Carrito</h1>
+
+  {% if carrito %}
+  <table style="width: 100%; border-collapse: collapse; margin-top: 2rem">
+    <thead>
+      <tr>
+        <th style="text-align: left">Producto</th>
+        <th>Precio</th>
+        <th>Cantidad</th>
+        <th>Subtotal</th>
+        <th>Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for id, item in carrito.items %}
+      <tr style="border-bottom: 1px solid #ccc">
+        <td>
+          {% if item.imagen %}
+          <img src="{{ item.imagen }}" alt="{{ item.nombre }}" style="width: 60px; height: 60px; object-fit: cover; border-radius: 6px; margin-right: 10px;" />
+          {% endif %}
+          {{ item.nombre }}
+        </td>
+        <td>${{ item.precio|floatformat:0|intcomma }}</td>
+        <td>{{ item.cantidad }}</td>
+        <td>${{ item.subtotal|floatformat:0|intcomma }}</td>
+        <td>
+          <a href="{% url 'Tienda:aumentar_cantidad' id %}" class="btn-acento">+</a>
+          <a href="{% url 'Tienda:disminuir_cantidad' id %}" class="btn-acento">−</a>
+          <a href="{% url 'Tienda:eliminar_del_carrito' id %}" class="btn-acento">🗑️</a>
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+  <h2 style="margin-top: 2rem">Total: ${{ total|floatformat:0|intcomma }}</h2>
+
+  <div style="margin-top: 2rem">
+    <a href="{% url 'Tienda:vaciar_carrito' %}" class="btn-acento">Vaciar carrito</a>
+
+    <form method="post" action="{% url 'Tienda:finalizar_compra' %}" style="display:inline;">
+      {% csrf_token %}
+      <button type="submit" class="btn-acento">Finalizar compra</button>
+    </form>
+
+    <a href="{% url 'Tienda:tienda' %}" class="btn-acento">Seguir comprando</a>
+  </div>
+
+  {% else %}
+  <p>Tu carrito está vacío.</p>
+  <a href="{% url 'Tienda:tienda' %}" class="btn-acento">Ir a la tienda</a>
+  {% endif %}
+</div>
+{% endblock %}

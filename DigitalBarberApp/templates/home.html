@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Inicio - Digital Barber{% endblock %}
+
+{% block content %}
+    <div style="text-align: center; padding: 8rem 2rem; background-color: var(--color-negro);">
+        <h1>El Arte del Estilo Masculino</h1>
+        <p style="font-size: 1.4rem; color: var(--color-gris-texto); margin-bottom: 2.5rem; max-width: 700px; margin-left: auto; margin-right: auto;">
+            Donde la precisión tradicional se encuentra con las tendencias modernas.
+        </p>
+        <a href="{% url 'servicios' %}" class="btn-acento">Ver Servicios</a>
+    </div>
+
+    <div class="container">
+        <h2>Bienvenidos a DigitalBarber</h2>
+        <p>
+            Somos un equipo de profesionales apasionados por el arte de la barbería y el estilo personal. 
+            Nuestro compromiso es ofrecerte una experiencia única, combinando técnicas tradicionales 
+            con las últimas tendencias.
+        </p>
+        <a href="{% url 'empleados' %}" class="btn-acento">Conoce al Equipo</a>
+    </div>
+{% endblock %}
